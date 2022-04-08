@@ -1,6 +1,6 @@
 import random
 
-SIZE = 2
+SIZE = 4
 low_tiling = [[0 for j in range(SIZE)] for k in range(SIZE)]
 high_tiling = [[SIZE for j in range(SIZE)] for k in range(SIZE)]
 
@@ -39,7 +39,7 @@ def randomMove():
 def trueMovePos(heights, move):
     temppos = move[0][:]  # make a copy
     while max(temppos) < SIZE:
-        targetheight = tempppos[2]
+        targetheight = temppos[2]
         if move[1]:
             targetheight += 1
         currheight = heights[temppos[0]][temppos[1]]
@@ -59,9 +59,9 @@ def performMove(heights, move):
     movepos = trueMovePos(heights, move)
     if movepos is not None:
         if move[1]:
-            heights[movepos] -= 1
+            heights[movepos[0]][movepos[1]] -= 1
         else:
-            heights[movepos] += 1
+            heights[movepos[0]][movepos[1]] += 1
 
 
 # nondestructive, performs moves back to front
@@ -93,4 +93,9 @@ def randomConfig():
 
         moves_per_step *= 2
 
-    return performMoves(lt, move_list)
+    return performMoves(low_tiling, move_list)
+
+
+# test if this is the main file or if this is imported
+if __name__ == '__main__':
+    print(randomConfig())

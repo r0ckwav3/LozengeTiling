@@ -1,7 +1,5 @@
-Triangular coordinates are (x,y) coordinates starting from the top left giving the triangles filling in a hexagon. In a hexagon of size n, there are a total of 4n-1 rows, n in increasing size from 2 to 2n, 2n-1 rows of 2n and then n rows of decreasing size from 2n to 2.
+Since a lozenge tiling can be represented as a grid of heights weakly increasing in one direction, we will represent a tiling as a 2D array of numbers increasing in the negative x and y direction (so that 0,0,0 is the middle).
 
-A move is a pairs:
-* List[int]: a position in triangular coordinates, giving the top left of the hexagon
-* Bool: True if "pulling", False if "Pulling"
+A move is a position as well as a "push" or a "pull" (a boolean where True is push). This position is a line coming towards the viewer and so will be represented as a 3d point on that line where one of the three coordinates is zero and the other two are positive. The total number of such coordinates is (3 * n^2) - (3*n) + 1.
 
-A configuration is a 2d array of integers (in triangular coordinates) 0:6 where the number represents the direction of connection, starting at horizontal right and moving counterclockwise.
+Coordinates are (x, y, z) where z is vertical for 3d or (x, y) for 2d.

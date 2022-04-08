@@ -62,3 +62,35 @@ def performMove(heights, move):
             heights[movepos] -= 1
         else:
             heights[movepos] += 1
+
+
+# nondestructive, performs moves back to front
+def performMoves(heights, move_list):
+    newheights = heights[:]  # copy it over
+    for i in range(len(move_list)-1, -1, -1):
+        performMove(newheights, move_list[i])
+    return newheights
+
+
+def isIndependant(move_list):
+    lt = performMoves(low_tiling, move_list)
+    ht = performMoves(high_tiling, move_list)
+
+    for x in range(SIZE):
+        for y in range(SIZE):
+            if lt[x][y] != ht[x][y]:
+                return False
+
+    return True
+
+
+def randomConfig():
+    move_list = []
+    moves_per_step = 1
+    while not isIndependant(move_list):
+        for i in range(moves_per_step):
+            move_list.append(randomMove())
+
+        moves_per_step *= 2
+
+    return performMoves(lt, move_list)

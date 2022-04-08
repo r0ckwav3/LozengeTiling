@@ -51,3 +51,14 @@ def trueMovePos(heights, move):
         temppos = [e + 1 for e in temppos]
 
     return None
+
+
+# destructive, modifies the configuration passed in
+# does nothing if the move is illegal
+def performMove(heights, move):
+    movepos = trueMovePos(heights, move)
+    if movepos is not None:
+        if move[1]:
+            heights[movepos] -= 1
+        else:
+            heights[movepos] += 1
